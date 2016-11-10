@@ -12,14 +12,20 @@ var talkInfo = function() {
    return out
 
 }
-
+//this extracts JUST the element nodes from the 
+//childArray object which isn't actually an array
 var nodeChecker = function(obj) {
     for (var key in obj) {
-        console.log(key, obj[key])
+      var check = parseInt(key) 
+          check = isNaN(check)
+        if(!check) {
+            console.log(key, obj[key])
+        }  
+        
     }
 }
 
 
 var info = talkInfo()
-
+//the childArray is actually an array-like object
 console.log(nodeChecker(info.childArray))
