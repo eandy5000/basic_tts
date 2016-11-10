@@ -3,29 +3,39 @@ var but = document.querySelector("player")
 
 
 //info our reader will need from .talk
-var talkInfo = function() {
-   var out = {}
-//see if .talk has children
-   out.childCheck = (div.children.length >= 1) ? true: false
-   out.childNumber = div.children.length
-   out.childArray = div.children
-   return out
-
+var talkInfo = {
+//gets talk info
+   childCheck: (div.children.length >= 1) ? true: false,
+   childNumber: div.children.length,
+   childObj: div.children
 }
 //this extracts JUST the element nodes from the 
-//childArray object which isn't actually an array
-var nodeChecker = function(obj) {
+//childObj and turns them into a useful array
+var childObjToArr = function(obj) {
+    var out = []
     for (var key in obj) {
       var check = parseInt(key) 
           check = isNaN(check)
         if(!check) {
-            console.log(key, obj[key])
+            out.push(obj[key])
         }  
-        
     }
+    return out
 }
 
 
-var info = talkInfo()
-//the childArray is actually an array-like object
-console.log(nodeChecker(info.childArray))
+var init = function(obj) {
+    if(obj.childCheck) {
+        
+        var els = childObjToArr(obj.childObj)
+            els = els.reduce(function(out, item){
+                item.classList.contains("speak")
+            }, "")
+    } else {
+        return;
+    }
+    return console.log(els)
+}
+
+init(talkInfo)
+console.log(childObjToArr(obj.childObj))
