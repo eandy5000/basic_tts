@@ -1,6 +1,10 @@
 var div = document.querySelector(".talk")
-var but = document.querySelector("player")
+var but = document.querySelector(".player")
 
+//helper functions
+var _withSpanExtractor = function() {
+    
+}
 
 //info our reader will need from .talk
 var talkInfo = {
@@ -23,14 +27,32 @@ var childObjToArr = function(obj) {
     return out
 }
 
+//this function determines if a tts span is present
+//it then extracts the span value || the text value of non tts
+var valExtractor = function(arrOfObj) {
+    var out = ""
+
+    arrOfObj = arrOfObj.map(function(item){
+        if(item.childElementCount === 0){
+            return item.innerText
+        } else {
+            return item.childNodes.map(function(item){
+                return 
+            })
+        }
+    })
+
+    return arrOfObj
+}
+
 
 var init = function(obj) {
     if(obj.childCheck) {
         
         var els = childObjToArr(obj.childObj)
-            els = els.reduce(function(out, item){
-                item.classList.contains("speak")
-            }, "")
+        els = valExtractor(els)
+
+
     } else {
         return;
     }
@@ -38,4 +60,3 @@ var init = function(obj) {
 }
 
 init(talkInfo)
-console.log(childObjToArr(obj.childObj))
