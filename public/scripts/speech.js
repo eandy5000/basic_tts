@@ -2,8 +2,14 @@ var div = document.querySelector(".talk")
 var but = document.querySelector(".player")
 
 //helper functions
-var _withSpanExtractor = function() {
-    
+var _spanExtractor = function(nodes) {
+    var l = nodes.length
+// I think I need to use nodeList and namedNodeMap methods to get what I need
+    for (var i = 0; i < l; i++ ) {
+        console.log(nodes[i], " ", nodes[i].attributes)
+    }
+
+    return nodes
 }
 
 //info our reader will need from .talk
@@ -36,9 +42,7 @@ var valExtractor = function(arrOfObj) {
         if(item.childElementCount === 0){
             return item.innerText
         } else {
-            return item.childNodes.map(function(item){
-                return 
-            })
+            return _spanExtractor(item.childNodes)
         }
     })
 
