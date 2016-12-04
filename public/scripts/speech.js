@@ -2,6 +2,7 @@
 
 var els = document.querySelector(".talker")
 var play = document.querySelector("#play")
+var pause = document.querySelector("#pause")
 
 
 var speechStringer = function(el) {
@@ -23,11 +24,32 @@ var messageMaker = function(message) {
     return message
 }
 
-console.log(speechStringer(els))
-
 
 var init = function(element) {
-    var speechText = speechStringer(element)
-    var message = messageMaker(speechText)
+
+    //event handelers
+    play.addEventListener('click', function(){
+
+        if (window.speechSynthesis.pending === false && play.innerText === "play"){
+            var message = speechStringer(els)
+            window.speechSynthesis.speak(messageMaker(message))
+            play.innerText = "cancel"
+        } else {
+            window.speechSynthesis.cancel()
+            play.innerText = "play"
+        }
+    })
+
+    pause.addEventListener('click', function(){
+        if(window.speechSynthesis.speaking === true && pause.innerText === "pause") {
+            pause.innerText = "resume"
+            window.speechSynthesis.pause()
+        } else if (window.speechSynthesis.paused === true && pause.innerText === "resume"){
+            pause.innerText = "pause"
+            window.speechSynthesis.resume()
+        }
+    })
+
+
 
 }(els)
