@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    
 </head>
-<body>
-     <h1>Reader</h1>
-     <div class="talk">
-          <p>Whatever you do, don't say the magic word...</p>
-          <p>Today's magic word is <span speak="magic word"><strong>fish</strong></span> so please don't say the magic word.</p>
-     
-     </div>
-     <button class="player">Play</button>
-     <script src="./scripts/speech.js"></script>
-</body>
+    <body>
+        <h1>Reader</h1>
+        <div class="talker">
+            Whatever you do don't say the magic word...<br />
+            today's magic word is <span data-do="ommit magic word"><strong>fish</strong></span>.<br />
+            So please don't say the magic word.
+        </div>
+        <button id="play">play</button>
+        <button id="stop">stop</button>
+
+        <script src="./scripts/speech.js"></script>
+    </body>
 </html>

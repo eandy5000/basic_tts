@@ -1,20 +1,33 @@
 'use strict'
 
-var div = document.querySelector(".talk")
-var but = document.querySelector(".player")
+var els = document.querySelector(".talker")
+var play = document.querySelector("#play")
 
 
-//looks for elements with talk class 
-var talkCheck = function(talkEl){
-    console.log(`talk check ${talkEl} length ${talkEl.length}`)
-    return (talkEl.length > 0) ? true: false
+var speechStringer = function(el) {
+    var out = ""
+    el = el.childNodes
+
+    for (var i = 0; i < el.length; i++){
+        if (el.item(i).nodeName === "#text") {
+            out += el.item(i).data
+        } else if (el.item(i).nodeName === "SPAN" && el.item(i).dataset.do !== undefined) {
+            out += el.item(i).dataset.do
+        }  
+    }
+    return out
 }
 
+var messageMaker = function(message) {
+    message = new SpeechSynthesisUtterance(message)
+    return message
+}
+
+console.log(speechStringer(els))
 
 
+var init = function(element) {
+    var speechText = speechStringer(element)
+    var message = messageMaker(speechText)
 
-//runs the program functions
-var init = function() {
-    console.log("working")
-    console.log(talkCheck(div))
-}()
+}(els)
